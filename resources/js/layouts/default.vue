@@ -1,21 +1,29 @@
 <template>
   <div class="main-layout">
-    <navbar />
+    <div class="overlay"></div>
+    <RightNavbar />
+    <Sidebar />
 
-    <div class="container mt-4">
-      <child />
-    </div>
+    <section class="content">
+      <div class="body_scroll">
+        <div class="container-fluid">
+          <child />
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
-import Navbar from '~/components/Navbar'
+import RightNavbar from '../components/RightNavbar'
+import Sidebar from '../components/Sidebar'
 
 export default {
   name: 'MainLayout',
 
   components: {
-    Navbar
+    RightNavbar,
+    Sidebar
   }
 }
 </script>
