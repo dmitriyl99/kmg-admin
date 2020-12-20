@@ -23,7 +23,7 @@ class CreateInvoicesTable extends Migration
             $table->text('shipper')->nullable();
             $table->text('consignee')->nullable();
 
-            $table->foreignId('container_id')->constrained();
+            $table->foreignId('container_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
