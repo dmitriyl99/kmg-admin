@@ -24,7 +24,7 @@
           </router-link>
         </li>
         <li>
-          <a href="my-profile.html"><i class="zmdi zmdi-account"></i><span>Containers</span></a>
+          <router-link :to="{ name: 'containers.index' }"><i class="zmdi zmdi-account"></i><span>Containers</span></router-link>
         </li>
       </ul>
     </div>
