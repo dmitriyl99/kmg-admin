@@ -1,7 +1,6 @@
 <template>
   <div class="main-layout">
     <div class="overlay"></div>
-    <RightNavbar />
     <Sidebar />
 
     <section class="content">
@@ -15,14 +14,12 @@
 </template>
 
 <script>
-import RightNavbar from '../components/RightNavbar'
 import Sidebar from '../components/Sidebar'
 
 export default {
   name: 'MainLayout',
 
   components: {
-    RightNavbar,
     Sidebar
   }
 }
