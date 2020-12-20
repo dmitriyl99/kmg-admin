@@ -1,53 +1,47 @@
 <template>
-  <div class="row">
-    <div class="col-lg-8 m-auto">
-      <card :title="$t('login')">
-        <form @submit.prevent="login" @keydown="form.onKeydown($event)">
-          <!-- Email -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
-              <has-error :form="form" field="email" />
+  <div class="authentication">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-sm-12">
+          <form class="card auth_form" @submit.prevent="login" @keydown="form.onKeydown($event)">
+            <div class="header">
+              <img class="logo" src="https://www.kmgglobal.com/static/media/logo.fa2b86a2.png" alt="KMG Global">
+              <h5>Log in</h5>
             </div>
-          </div>
-
-          <!-- Password -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('password') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password">
-              <has-error :form="form" field="password" />
+            <div class="body">
+              <div class="input-group mb-3">
+                <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" type="text" class="form-control" placeholder="Email">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="zmdi zmdi-account-circle"></i></span>
+                </div>
+                <has-error :form="form" field="email" />
+              </div>
+              <div class="input-group mb-3">
+                <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" type="password" class="form-control"  placeholder="Password">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="zmdi zmdi-lock"></i></span>
+                </div>
+                <has-error :form="form" field="password" />
+              </div>
+              <div class="checkbox">
+                <input id="remember_me" type="checkbox">
+                <label for="remember_me">Remember Me</label>
+              </div>
+              <v-button :loading="form.busy" :type="primary" :native-type="submit">SIGN IN</v-button>
             </div>
+          </form>
+          <div class="copyright text-center">
+            &copy;
+            {{ new Date().getFullYear() }}
+            <span>Designed by <a href="https://aiso.uz/" target="_blank">Aiso</a></span>
           </div>
-
-          <!-- Remember Me -->
-          <div class="form-group row">
-            <div class="col-md-3" />
-            <div class="col-md-7 d-flex">
-              <checkbox v-model="remember" name="remember">
-                {{ $t('remember_me') }}
-              </checkbox>
-
-              <router-link :to="{ name: 'password.request' }" class="small ml-auto my-auto">
-                {{ $t('forgot_password') }}
-              </router-link>
-            </div>
+        </div>
+        <div class="col-lg-8 col-sm-12">
+          <div class="card">
+            <img src="/assets/images/signup.svg" alt="Sign In"/>
           </div>
-
-          <div class="form-group row">
-            <div class="col-md-7 offset-md-3 d-flex">
-              <!-- Submit Button -->
-              <v-button :loading="form.busy">
-                {{ $t('login') }}
-              </v-button>
-
-              <!-- GitHub Login Button -->
-              <login-with-github />
-            </div>
-          </div>
-        </form>
-      </card>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -55,12 +49,11 @@
 <script>
 import Form from 'vform'
 import Cookies from 'js-cookie'
-import LoginWithGithub from '~/components/LoginWithGithub'
+import VButton from '../../components/Button'
 
 export default {
-  components: {
-    LoginWithGithub
-  },
+  components: { VButton },
+  layout: 'basic',
 
   middleware: 'guest',
 
