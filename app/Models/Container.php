@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property ContainerStatus $status
  * @property Invoice $invoice
+ * @property Image[] $images
  */
 class Container extends Model
 {
@@ -70,5 +71,15 @@ class Container extends Model
     public function invoice()
     {
         return $this->hasOne(Invoice::class);
+    }
+
+    /**
+     * Images
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function images()
+    {
+        return $this->hasMany(Image::class);
     }
 }
