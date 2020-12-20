@@ -1,5 +1,8 @@
 <template>
   <card :title="'Containers'">
+    <div class="d-flex justify-content-end align-items-center mb-4">
+      <a href="#" class="btn btn-round btn-primary"><i class="zmdi zmdi-plus-circle-o"></i> Add container</a>
+    </div>
     <div class="table-responsive">
       <table class="table table-stripped">
         <thead>
