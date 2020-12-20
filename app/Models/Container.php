@@ -58,7 +58,7 @@ class Container extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function status()
+    public function containerStatus()
     {
         return $this->belongsTo(ContainerStatus::class);
     }
@@ -76,10 +76,10 @@ class Container extends Model
     /**
      * Images
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function images()
     {
-        return $this->hasMany(Image::class);
+        return $this->morphMany(Image::class, 'imageable');
     }
 }
