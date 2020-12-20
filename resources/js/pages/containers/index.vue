@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="container in containers" :key="container.id">
+          <tr v-for="container in containers.data" :key="container.id">
             <td>{{ container.container_number }}</td>
             <td>{{ container.shipping_line }}</td>
             <td>{{ container.port }}</td>
@@ -35,11 +35,21 @@
               <span v-else class="badge badge-danger">no</span>
             </td>
             <td>
-              <span>Actions</span>
+              <div class="d-flex justify-content-around align-items-center">
+                <a href="#" class="btn btn-info btn-icon" data-toggle="tooltip" title="Show"><i class="zmdi zmdi-eye"></i></a>
+                <a href="#" class="btn btn-warning btn-icon" data-toggle="tooltip" title="Edit"><i class="zmdi zmdi-edit"></i></a>
+              </div>
             </td>
           </tr>
         </tbody>
       </table>
+      <div class="d-flex justify-content-center align-items-center">
+        <ul class="pagination">
+          <li v-for="link in paginationLinks" :key="link.label" :class="{ 'active': link.active }" class="page-item">
+            <button @click="pagination(link.label)" class="page-link">{{ link.label }}</button>
+          </li>
+        </ul>
+      </div>
     </div>
   </card>
 </template>
@@ -49,27 +59,45 @@ import axios from 'axios'
 
 export default {
   name: 'ContainerIndex',
-
   metaInfo () {
     return { title: 'Containers' }
   },
 
   data: () => ({
-    containers: []
+    containers: {},
+    query: {
+      page: 1,
+      per_page: 5
+    }
   }),
 
   mounted () {
-    this.fetchContainers()
+    this.fetchContainers(this.$route.query)
+  },
+
+  watch: {
+    $route: {
+      handler (to) {
+        this.fetchContainers(to.query)
+      }
+    }
   },
 
   methods: {
-    fetchContainers () {
-      axios.get('/api/containers')
+    fetchContainers (query) {
+      const url = '/api/containers'
+      axios.get(url, { params: query })
         .then(response => {
-          console.log(response.data)
-          this.containers = response.data.data
-          console.log(this.containers)
+          this.containers = response.data
         })
+    },
+    pagination (page) {
+      this.$router.push({ name: 'containers.index', query: { page } })
+    }
+  },
+  computed: {
+    paginationLinks () {
+      return this.containers.links.slice(1, -1)
     }
   }
 }
