@@ -19,7 +19,7 @@ class ContainerController extends Controller
      */
     public function index()
     {
-        $containers = Container::query()->paginate(15);
+        $containers = Container::with('containerStatus', 'images', 'invoice')->paginate(15);
         return response()->json($containers);
     }
 
