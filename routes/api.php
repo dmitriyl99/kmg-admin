@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\AppController;
+use App\Http\Controllers\Api\ContainerController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\OAuthController;
@@ -29,6 +31,16 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::patch('settings/profile', [ProfileController::class, 'update']);
     Route::patch('settings/password', [PasswordController::class, 'update']);
+
+    Route::get('app', [AppController::class, 'index']);
+
+    Route::prefix('containers')->group(function () {
+        Route::get('', [ContainerController::class, 'index']);
+        Route::post('', [ContainerController::class, 'store']);
+        Route::get('{id}', [ContainerController::class, 'show']);
+        Route::put('{id}', [ContainerController::class, 'update']);
+        Route::delete('{id}', [ContainerController::class, 'destroy']);
+    });
 });
 
 Route::group(['middleware' => 'guest:api'], function () {
