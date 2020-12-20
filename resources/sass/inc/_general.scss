@@ -1,4 +1,4 @@
-﻿body {    
+﻿body {
     @include transition(all .5s);
     font-family: $body-font-family;
     background-color: $body;
@@ -27,7 +27,7 @@ section {
         //overflow: hidden;
         padding: 10px;
         position: relative;
-        margin: 20px 70px 20px 260px;
+        margin: 20px 0 20px 230px;
         box-shadow: 0 0 16px rgba($dark,0.06), 0 6px 20px rgba($dark,0.02);
     }
 }
@@ -85,8 +85,8 @@ section {
                         .ml-menu{
                             bottom: 0;
                             top: auto;
-                        }                        
-                    } 
+                        }
+                    }
                 }
                 .menu-toggle:after,
                 .menu-toggle:before,
@@ -101,7 +101,7 @@ section {
                     display: none !important;
                     position: absolute;
                     top: 0;
-                    left: 50px;                    
+                    left: 50px;
                     padding: 15px 15px 15px 5px;
                     text-align: left;
                     box-shadow: 0px 10px 50px 0px rgba($dark,0.2);
@@ -113,7 +113,7 @@ section {
                     }
                 }
             }
-        }        
+        }
     }
     section.content {
         margin-left: 50px;
@@ -128,7 +128,7 @@ section {
     .navbar-right{
         .navbar-nav{
             right: -70px;
-        }        
+        }
     }
     section.content{
         margin-right: 20px;
@@ -160,7 +160,7 @@ section {
         }
 
         @media only screen and (max-width: $break-small - 1px){
-            margin: 0;            
+            margin: 0;
         }
     }
     .navbar-right{
@@ -178,7 +178,7 @@ section {
     &.right_icon_toggle{
         section.content{
             margin-right: 20px;
-        }   
+        }
     }
 }
 
@@ -190,7 +190,7 @@ section {
     top: 0px;
     left: 0px;
     width: 100%;
-    height: 100%;    
+    height: 100%;
     opacity: 0;
     z-index: 9999;
 
@@ -200,8 +200,8 @@ section {
         font-weight: $font-weight-300;
         position: absolute;
         top: 50%;
-        width: 100%;        
-        font-size: 60px;        
+        width: 100%;
+        font-size: 60px;
         text-align: center;
         border: 0px;
         margin: 0px auto;
@@ -239,7 +239,7 @@ section {
     }
     &.open {
         @include transform(translate(0px, 0px) scale(1, 1));
-        opacity: 1;        
+        opacity: 1;
     }
 }
 .mobile_menu{
@@ -268,7 +268,7 @@ section {
                 @media only screen and (max-width: $break-small - 1px){
                    // white-space: normal;
                 }
-                
+
                 &:first-child{
                     border-radius: $border-radius-small 0 0 $border-radius-small;
                 }
@@ -294,7 +294,7 @@ section {
             td, th{
                 color: $white;
             }
-        }        
+        }
     }
 }
 .search_page{
