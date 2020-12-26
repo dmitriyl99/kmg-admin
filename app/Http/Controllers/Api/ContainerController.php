@@ -33,10 +33,8 @@ class ContainerController extends Controller
     public function store(ContainerRequest $request)
     {
         $data = $request->validated();
-        if (in_array('paid', $data))
-            $data['paid'] = true;
-        if (in_array('active', $data['invoice']))
-            $data['invoice']['active'] = true;
+        $data['paid'] = (int) $data['paid'];
+        $data['invoice']['active'] = (int) $data['invoice']['active'];
 
         $container = DB::transaction(function () use ($data, $request) {
             /** @var Container $container */
@@ -45,10 +43,11 @@ class ContainerController extends Controller
             $container->invoice()->create($data['invoice']);
 
             $images = $request->file('images');
-            foreach ($images as $image) {
-                $imageData = ImageHelper::saveImage($image, 'containers');
-                $container->images()->create($imageData);
-            }
+            if (! is_null($images))
+                foreach ($images as $image) {
+                    $imageData = ImageHelper::saveImage($image, 'containers');
+                    $container->images()->create($imageData);
+                }
 
             return $container;
         });
