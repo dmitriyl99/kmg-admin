@@ -27,7 +27,7 @@ class ContainerRequest extends FormRequest
             'container_number' => 'required|string',
             'booking_number' => 'nullable|string',
             'shipping_line' => 'nullable|string',
-            'container_status_id' => 'required|integer|in:container_statuses,id',
+            'container_status_id' => 'required|integer|exists:container_statuses,id',
             'port' => 'required|string',
             'destination' => 'required|string',
             'capacity' => 'required|integer',
@@ -43,9 +43,9 @@ class ContainerRequest extends FormRequest
             'invoice.date' => 'nullable|date',
             'invoice.container_size' => 'required|string',
             'invoice.company' => 'required|string',
-            'invoice.total_due' => 'required|number',
-            'invoice.shipper' => 'required|string',
-            'invoice.consignee' => 'required|string'
+            'invoice.total_due' => 'nullable|integer',
+            'invoice.shipper' => 'nullable|string',
+            'invoice.consignee' => 'nullable|string'
         ];
     }
 }
