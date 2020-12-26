@@ -19,6 +19,12 @@ if (mix.inProduction()) {
   mix.sourceMaps()
 }
 
+mix.options({
+  hmrOptions: {
+    host: 'kmg.local.test'
+  }
+})
+
 mix.webpackConfig({
   plugins: [
     // new BundleAnalyzerPlugin()
@@ -34,6 +40,10 @@ mix.webpackConfig({
     path: mix.config.hmr
       ? '/'
       : path.resolve(__dirname, mix.inProduction() ? './public/build' : './public')
+  },
+  watchOptions: {
+    aggregateTimeout: 200,
+    poll: 5000
   }
 })
 
