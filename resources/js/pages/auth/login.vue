@@ -27,7 +27,7 @@
                 <input id="remember_me" type="checkbox">
                 <label for="remember_me">Remember Me</label>
               </div>
-              <v-button :loading="form.busy" :type="primary" :native-type="submit">SIGN IN</v-button>
+              <v-button :loading="form.busy" :type="'primary'" :native-type="'submit'">SIGN IN</v-button>
             </div>
           </form>
           <div class="copyright text-center">
