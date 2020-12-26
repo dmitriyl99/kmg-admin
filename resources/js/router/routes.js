@@ -7,11 +7,8 @@ export default [
   { path: '/login', name: 'login', component: page('auth/login.vue') },
 
   { path: '/', name: 'home', component: page('home.vue') },
-  {
-    path: '/containers',
-    component: page('containers/index.vue'),
-    name: 'containers.index'
-  },
+  { path: '/containers', component: page('containers/index.vue'), name: 'containers.index' },
+  { path: '/containers/create', component: page('containers/create.vue'), name: 'containers.create' },
   {
     path: '/settings',
     component: page('settings/index.vue'),

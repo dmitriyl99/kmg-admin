@@ -1,7 +1,9 @@
 <template>
   <card :title="'Containers'">
     <div class="d-flex justify-content-end align-items-center mb-4">
-      <a href="#" class="btn btn-round btn-primary"><i class="zmdi zmdi-plus-circle-o"></i> Add container</a>
+      <router-link :to="{ name: 'containers.create' }" class="btn btn-round btn-primary">
+        <i class="zmdi zmdi-plus-circle-o"></i> Add a container
+      </router-link>
     </div>
     <div class="table-responsive">
       <table class="table table-stripped">
@@ -27,7 +29,7 @@
             <td><span class="badge" :class="'badge-'+container.container_status.color">{{ container.container_status.name }}</span></td>
             <td>{{ container.capacity }}</td>
             <td>
-              <span v-if="container.invoice" class="badge badge-success">yes</span>
+              <span v-if="container.invoice && container.invoice.active" class="badge badge-success">yes</span>
               <span v-else class="badge badge-danger">no</span>
             </td>
             <td>
@@ -97,7 +99,10 @@ export default {
   },
   computed: {
     paginationLinks () {
-      return this.containers.links.slice(1, -1)
+      if (this.containers.links) {
+        return this.containers.links.slice(1, -1)
+      }
+      return []
     }
   }
 }
