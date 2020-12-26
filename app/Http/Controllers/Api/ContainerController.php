@@ -6,6 +6,7 @@ use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContainerRequest;
 use App\Models\Container;
+use App\Models\ContainerStatus;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -130,5 +131,10 @@ class ContainerController extends Controller
         });
 
         return response()->json([], Response::HTTP_NO_CONTENT);
+    }
+
+    public function statuses()
+    {
+        return ContainerStatus::all();
     }
 }

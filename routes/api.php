@@ -35,6 +35,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('app', [AppController::class, 'index']);
 
     Route::prefix('containers')->group(function () {
+        Route::get('statuses', [ContainerController::class, 'statuses']);
+
         Route::get('', [ContainerController::class, 'index']);
         Route::post('', [ContainerController::class, 'store']);
         Route::get('{id}', [ContainerController::class, 'show']);
