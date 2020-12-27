@@ -123,7 +123,7 @@ class ContainerController extends Controller
                 ImageHelper::deleteImage($image->filename);
             }
             $container->images()->delete();
-            $container->invoice->delete();
+            $container->invoice()->delete();
             $container->delete();
         });
 
