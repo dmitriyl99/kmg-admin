@@ -63,7 +63,7 @@ class ContainerController extends Controller
      */
     public function show($id)
     {
-        $container = Container::with('images', 'invoice', 'status')->findOrFail($id);
+        $container = Container::with('images', 'invoice', 'containerStatus')->findOrFail($id);
 
         return response()->json($container);
     }
@@ -81,17 +81,15 @@ class ContainerController extends Controller
         $container = Container::query()->findOrFail($id);
 
         $data = $request->validated();
-        if (in_array('paid', $data))
-            $data['paid'] = true;
-        if (in_array('active', $data['invoice']))
-            $data['invoice']['active'] = true;
+        $data['paid'] = (int) $data['paid'];
+        $data['invoice']['active'] = (int) $data['invoice']['active'];
 
         $container = DB::transaction(function () use ($data, $request, $container) {
             $container->update($data);
 
             $container->invoice->update($data['invoice']);
 
-            if ($request->has('images')) {
+            if ($request->has('images') and ! is_null($request->file('images'))) {
                 foreach ($container->images as $image)
                     ImageHelper::deleteImage($image->filename);
                 $container->images()->delete();
