@@ -39,7 +39,7 @@
             <td>
               <div class="d-flex justify-content-around align-items-center">
                 <a href="#" class="btn btn-info btn-icon" data-toggle="tooltip" title="Show"><i class="zmdi zmdi-eye"></i></a>
-                <a href="#" class="btn btn-warning btn-icon" data-toggle="tooltip" title="Edit"><i class="zmdi zmdi-edit"></i></a>
+                <router-link :to="{ name: 'containers.edit', params: { id: container.id } }" class="btn btn-warning btn-icon" data-toggle="tooltip" title="Edit"><i class="zmdi zmdi-edit"></i></router-link>
               </div>
             </td>
           </tr>
