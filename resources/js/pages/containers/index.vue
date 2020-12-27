@@ -38,8 +38,8 @@
             </td>
             <td>
               <div class="d-flex justify-content-around align-items-center">
-                <a href="#" class="btn btn-info btn-icon" data-toggle="tooltip" title="Show"><i class="zmdi zmdi-eye"></i></a>
                 <router-link :to="{ name: 'containers.edit', params: { id: container.id } }" class="btn btn-warning btn-icon" data-toggle="tooltip" title="Edit"><i class="zmdi zmdi-edit"></i></router-link>
+                <button type="button" class="btn btn-danger btn-icon" title="Delete" @click="deleteContainer(container.id)"><i class="zmdi zmdi-delete"></i></button>
               </div>
             </td>
           </tr>
@@ -58,6 +58,7 @@
 
 <script>
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 export default {
   name: 'ContainerIndex',
@@ -95,6 +96,26 @@ export default {
     },
     pagination (page) {
       this.$router.push({ name: 'containers.index', query: { page } })
+    },
+    deleteContainer (id) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to delete this container from database? This action cannot be undone',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios.delete(`/api/containers/${id}`).then(response => {
+            Swal.fire({
+              title: 'Deleted!',
+              text: 'The container was deleted',
+              icon: 'success'
+            })
+            this.fetchContainers(this.$route.query)
+          })
+        }
+      })
     }
   },
   computed: {
