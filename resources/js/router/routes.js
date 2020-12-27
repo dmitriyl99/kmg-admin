@@ -9,6 +9,7 @@ export default [
   { path: '/', name: 'home', component: page('home.vue') },
   { path: '/containers', component: page('containers/index.vue'), name: 'containers.index' },
   { path: '/containers/create', component: page('containers/create.vue'), name: 'containers.create' },
+  { path: '/containers/:id', component: page('containers/show.vue'), name: 'containers.show' },
   { path: '/containers/:id/edit', component: page('containers/edit.vue'), name: 'containers.edit' },
   {
     path: '/settings',

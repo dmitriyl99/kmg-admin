@@ -22,7 +22,7 @@
         </thead>
         <tbody>
           <tr v-for="container in containers.data" :key="container.id">
-            <td>{{ container.container_number }}</td>
+            <td><router-link :to="{ name: 'containers.show', params: { id: container.id } }">{{ container.container_number }}</router-link></td>
             <td>{{ container.shipping_line }}</td>
             <td>{{ container.port }}</td>
             <td>{{ container.destination }}</td>
