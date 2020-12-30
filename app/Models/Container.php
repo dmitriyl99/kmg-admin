@@ -82,4 +82,9 @@ class Container extends Model
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+
+    public function cargos()
+    {
+        return $this->hasMany(Cargo::class);
+    }
 }
