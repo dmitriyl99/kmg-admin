@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('', [ContainerController::class, 'index']);
         Route::post('', [ContainerController::class, 'store']);
         Route::get('{id}', [ContainerController::class, 'show']);
-        Route::put('{id}', [ContainerController::class, 'update']);
+        Route::post('{id}/update', [ContainerController::class, 'update']);
         Route::delete('{id}', [ContainerController::class, 'destroy']);
     });
 
@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('', [CargoController::class, 'index']);
         Route::post('', [CargoController::class, 'store']);
         Route::get('{id}', [CargoController::class, 'show']);
-        Route::put('{id}', [CargoController::class, 'update']);
+        Route::post('{id}/update', [CargoController::class, 'update']);
         Route::delete('{id}', [CargoController::class, 'destroy']);
     });
 });

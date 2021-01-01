@@ -231,16 +231,11 @@ export default {
       this.form.images = e.target.files
     },
     update () {
-      if (this.form.images) {
-        this.form.submit('put', `/api/containers/${this.container.id}`, {
-          transformRequest: [function (data, headers) {
-            return serialize(data)
-          }]
-        })
-          .then(this.successResponse)
-      } else {
-        this.form.submit('put', `/api/containers/${this.container.id}`).then(this.successResponse)
-      }
+      this.form.post(`/api/containers/${this.container.id}/update`, {
+        transformRequest: [function (data, headers) {
+          return serialize(data)
+        }]
+      }).then(this.successResponse)
     },
     successResponse ({ data }) {
       Swal.fire({
