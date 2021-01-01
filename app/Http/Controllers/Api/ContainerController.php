@@ -16,12 +16,15 @@ class ContainerController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        $containers = Container::with('containerStatus', 'images', 'invoice')->paginate(15);
-        return response()->json($containers);
+        $containers = Container::with('containerStatus', 'images', 'invoice');
+        if ($request->query('paginate', true))
+            return response()->json($containers->paginate(15));
+        return response()->json($containers->get());
     }
 
     /**
