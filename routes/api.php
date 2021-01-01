@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AppController;
+use App\Http\Controllers\Api\CargoController;
 use App\Http\Controllers\Api\ContainerController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
@@ -42,6 +43,14 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('{id}', [ContainerController::class, 'show']);
         Route::put('{id}', [ContainerController::class, 'update']);
         Route::delete('{id}', [ContainerController::class, 'destroy']);
+    });
+
+    Route::prefix('cargos')->group(function () {
+        Route::get('', [CargoController::class, 'index']);
+        Route::post('', [CargoController::class, 'store']);
+        Route::get('{id}', [CargoController::class, 'show']);
+        Route::put('{id}', [CargoController::class, 'update']);
+        Route::delete('{id}', [CargoController::class, 'destroy']);
     });
 });
 
