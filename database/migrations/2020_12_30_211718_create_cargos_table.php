@@ -16,17 +16,18 @@ class CreateCargosTable extends Migration
         Schema::create('cargos', function (Blueprint $table) {
             $table->id();
             $table->string('owner');
+            $table->string('name');
             $table->string('vin')->index();
             $table->string('port')->nullable();
             $table->date('received_at')->nullable();
-            $table->string('destination_country')->nullable();
+            $table->string('destination_country');
 
-            $table->string('transportation_from');
-            $table->string('transportation_address');
-            $table->double('transportation_price');
+            $table->string('transportation_from')->nullable();
+            $table->string('transportation_address')->nullable();
+            $table->double('transportation_price')->nullable();
 
             $table->date('date_received')->nullable();
-            $table->boolean('key')->nullable();
+            $table->string('key')->nullable();
 
             $table->double('total_due');
 
