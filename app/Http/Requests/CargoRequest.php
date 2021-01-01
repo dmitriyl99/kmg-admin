@@ -29,7 +29,7 @@ class CargoRequest extends FormRequest
             'vin' => 'required|string|max:255',
             'port' => 'nullable|string|max:255',
             'received_at' => 'nullable|date',
-            'destination_country' => 'nullable|string|max:255',
+            'destination_country' => 'required|string|max:255',
 
             'transportation_from' => 'nullable|string|max:255',
             'transportation_address' => 'nullable|string|max:255',
