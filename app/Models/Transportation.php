@@ -10,7 +10,7 @@ class Transportation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'transporter', 'cost', 'phone', 'paid', 'delivered', 'carrier_comment',
+        'transporter', 'cost', 'phone', 'transportation_paid', 'delivered', 'carrier_comment',
         'seller_name', 'lot_number', 'account_number', 'seller_phone', 'seller_address', 'pick_up_by', 'seller_comment',
         'cargo_id', 'warehouse', 'purchased_date', 'paid', 'ready', 'has_photo', 'key', 'status'
     ];
