@@ -29,7 +29,7 @@ class CreateCargosTable extends Migration
             $table->date('date_received')->nullable();
             $table->string('key')->nullable();
 
-            $table->double('total_due');
+            $table->double('total_due')->nullable();
 
             $table->string('postal_service')->nullable();
             $table->string('tracking_number')->nullable();
