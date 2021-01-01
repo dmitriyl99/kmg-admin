@@ -18,7 +18,7 @@ class CreateTransportationsTable extends Migration
             $table->string('transporter')->nullable();
             $table->double('cost')->nullable();
             $table->string('phone')->nullable();
-            $table->boolean('paid')->default(false);
+            $table->boolean('transportation_paid')->default(false);
             $table->boolean('delivered')->default(false);
             $table->string('carrier_comment')->nullable();
 
