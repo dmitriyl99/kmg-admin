@@ -26,7 +26,7 @@
             <td>{{ cargo.name }}</td>
             <td></td>
             <td>{{ cargo.port }}</td>
-            <td>{{ cargo.destination }}</td>
+            <td>{{ cargo.destination_country }}</td>
             <td>{{ cargo.owner }}</td>
             <td>
               <div class="d-flex justify-content-around align-items-center">
