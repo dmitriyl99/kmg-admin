@@ -31,7 +31,7 @@
             <td>
               <div class="d-flex justify-content-around align-items-center">
                 <router-link :to="{ name: 'cargos.edit', params: { id: cargo.id } }" class="btn btn-warning btn-icon" data-toggle="tooltip" title="Edit"><i class="zmdi zmdi-edit"></i></router-link>
-                <button type="button" class="btn btn-danger btn-icon" title="Delete"><i class="zmdi zmdi-delete"></i></button>
+                <button type="button" @click="deleteCargo(cargo.id)" class="btn btn-danger btn-icon" title="Delete"><i class="zmdi zmdi-delete"></i></button>
               </div>
             </td>
           </tr>
@@ -50,6 +50,7 @@
 
 <script>
 import axios from 'axios'
+import Swal from "sweetalert2";
 
 export default {
   name: 'CargoIndex',
@@ -97,6 +98,27 @@ export default {
 
     pagination (page) {
       this.$router.push({ name: 'cargos.index', query: { page } })
+    },
+
+    deleteCargo (id) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to delete this cargo from database? This action cannot be undone',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it'
+      }).then(result => {
+        if (result.isConfirmed) {
+          axios.delete(`/api/cargos/${id}`).then(response => {
+            Swal.fire({
+              title: 'Deleted!',
+              text: 'The cargo deleted',
+              icon: 'success'
+            })
+            this.fetchCargos(this.$route.query)
+          })
+        }
+      })
     }
   }
 }
