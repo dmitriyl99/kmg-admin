@@ -36,7 +36,6 @@ class CreateTransportationsTable extends Migration
             $table->boolean('paid')->default(false);
             $table->boolean('ready')->default(false);
             $table->boolean('has_photos')->default(false);
-            $table->boolean('key')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });
