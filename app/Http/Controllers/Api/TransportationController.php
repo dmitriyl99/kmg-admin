@@ -20,7 +20,7 @@ class TransportationController extends Controller
     public function index(Request $request): JsonResponse
     {
         $paginate = $request->query('paginate', true);
-        $query = Transportation::query();
+        $query = Transportation::with('cargo');
         if ($paginate)
             return response()->json($query->paginate(15));
         return response()->json($query->get());
@@ -36,7 +36,7 @@ class TransportationController extends Controller
     {
         $data = $request->validated();
         $transportation = Transportation::query()->create($data);
-        return response()->json($transportation);
+        return response()->json($transportation->load('cargo'));
     }
 
     /**
@@ -47,7 +47,7 @@ class TransportationController extends Controller
      */
     public function show(int $id): JsonResponse
     {
-        $transportation = Transportation::query()->findOrFail($id);
+        $transportation = Transportation::with('cargo')->findOrFail($id);
         return response()->json($transportation);
     }
 
@@ -64,7 +64,7 @@ class TransportationController extends Controller
         $transportation = Transportation::query()->findOrFail($id);
         $transportation->update($data);
 
-        return response()->json($transportation);
+        return response()->json($transportation->load('cargo'));
     }
 
     /**
