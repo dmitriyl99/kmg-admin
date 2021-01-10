@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AppController;
 use App\Http\Controllers\Api\CargoController;
 use App\Http\Controllers\Api\ContainerController;
+use App\Http\Controllers\Api\TransportationController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\OAuthController;
@@ -51,6 +52,14 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('{id}', [CargoController::class, 'show']);
         Route::post('{id}/update', [CargoController::class, 'update']);
         Route::delete('{id}', [CargoController::class, 'destroy']);
+    });
+
+    Route::prefix('transportations')->group(function () {
+        Route::get('', [TransportationController::class, 'index']);
+        Route::post('', [TransportationController::class, 'store']);
+        Route::get('{id}', [TransportationController::class, 'show']);
+        Route::post('{id}/update', [TransportationController::class, 'update']);
+        Route::delete('{id}', [TransportationController::class, 'destroy']);
     });
 });
 
