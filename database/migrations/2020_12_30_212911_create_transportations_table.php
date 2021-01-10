@@ -23,16 +23,16 @@ class CreateTransportationsTable extends Migration
             $table->string('carrier_comment')->nullable();
 
             $table->string('seller_name');
-            $table->string('lot_number');
-            $table->string('account_number');
+            $table->string('lot_number')->nullable();
+            $table->string('account_number')->nullable();
             $table->string('seller_phone');
             $table->string('seller_address');
-            $table->date('pick_up_by');
+            $table->date('pick_up_by')->nullable();
             $table->string('seller_comment')->nullable();
 
             $table->foreignId('cargo_id')->constrained()->cascadeOnDelete();
             $table->string('warehouse');
-            $table->date('purchased_date');
+            $table->date('purchased_date')->nullable();
             $table->boolean('paid')->default(false);
             $table->boolean('ready')->default(false);
             $table->boolean('has_photos')->default(false);
