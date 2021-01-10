@@ -26,6 +26,7 @@
         <li>
           <router-link :to="{ name: 'containers.index' }"><i class="zmdi zmdi-cloud-box"></i><span>Containers</span></router-link>
           <router-link :to="{ name: 'cargos.index' }"><i class="zmdi zmdi-collection-item"></i><span>Cargos</span></router-link>
+          <router-link :to="{ name: 'transportations.index' }"><i class="zmdi zmdi-truck"></i><span>Transportations</span></router-link>
         </li>
       </ul>
     </div>
