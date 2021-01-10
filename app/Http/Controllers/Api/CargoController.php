@@ -6,6 +6,7 @@ use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CargoRequest;
 use App\Models\Cargo;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
@@ -16,10 +17,12 @@ class CargoController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cargos = Cargo::query()->paginate(15);
-        return response()->json($cargos);
+        $cargos = Cargo::query();
+        if ($request->query('paginate', true))
+            return response()->json($cargos->paginate(15));
+        return response()->json($cargos->get());
     }
 
     /**
